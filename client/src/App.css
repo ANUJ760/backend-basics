@@ -1,38 +1,123 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app-shell {
   min-height: 100vh;
+  padding: 32px 16px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: flex-start;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.7), transparent 35%),
+    radial-gradient(circle at 90% 0%, rgba(187, 233, 255, 0.7), transparent 35%),
+    linear-gradient(160deg, #d7f2ff 0%, #bfe8ff 45%, #9fdcff 100%);
 }
 
-.App-link {
-  color: #61dafb;
+.app-card {
+  width: 100%;
+  max-width: 640px;
+  padding: 28px 22px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 16px 35px rgba(25, 92, 126, 0.22);
+  backdrop-filter: blur(14px);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.app-title {
+  margin: 0;
+  color: #0d4566;
+  letter-spacing: 0.2px;
+}
+
+.app-subtitle {
+  margin-top: 8px;
+  margin-bottom: 22px;
+  color: #215f82;
+  font-size: 0.96rem;
+}
+
+.addtodo-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.todo-input {
+  flex: 1;
+  padding: 11px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(40, 115, 150, 0.25);
+  background: rgba(255, 255, 255, 0.65);
+  color: #083f5e;
+  outline: none;
+}
+
+.todo-input:focus {
+  border-color: rgba(36, 133, 178, 0.7);
+  box-shadow: 0 0 0 4px rgba(130, 208, 245, 0.35);
+}
+
+.glass-btn {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.5),
+    rgba(170, 230, 255, 0.45)
+  );
+  color: #064666;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 8px 18px rgba(23, 113, 153, 0.2);
+  backdrop-filter: blur(10px);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.glass-btn:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.62),
+    rgba(145, 220, 255, 0.5)
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 10px 22px rgba(20, 107, 148, 0.24);
+}
+
+.glass-btn:active {
+  transform: translateY(0);
+}
+
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.todo-item {
+  padding: 11px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.46);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  color: #0f4666;
+  backdrop-filter: blur(9px);
+}
+
+.empty-state {
+  margin: 8px 0 0;
+  color: #2a678a;
+}
+
+@media (max-width: 520px) {
+  .app-card {
+    padding: 22px 16px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .addtodo-row {
+    flex-direction: column;
   }
 }

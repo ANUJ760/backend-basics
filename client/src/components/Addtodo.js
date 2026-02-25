@@ -10,13 +10,14 @@ function AddTodo({ onAdd }) {
   }
 
   return (
-    <div>
+    <div className="addtodo-row">
       <input
+        className="todo-input"
         value={title}
         onChange={e => setTitle(e.target.value)}
         placeholder="Enter todo"
       />
-      <button onClick={handleSubmit}>
+      <button className="glass-btn" onClick={handleSubmit}>
         Add
       </button>
     </div>

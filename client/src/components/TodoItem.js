@@ -1,7 +1,7 @@
 function TodoItem({ todo }) {
   return (
-    <li>
-      {todo.title}
+    <li className="todo-item">
+      <span>{todo.title}</span>
     </li>
   )
 }
