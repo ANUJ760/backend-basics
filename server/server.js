@@ -7,6 +7,7 @@ const { default: mongoose } = require('mongoose');
 const app = express(); // Create an Express application
 app.use(cors()); // Enable CORS for all routes
 app.use(express.json()); // Middleware to parse JSON bodies
+app.use("/api/auth", require("./routes/authRoutes")) // Use the authentication routes defined in authRoutes.js for any routes starting with /api/auth.
 
 // Connect to MongoDB using Mongoose
 mongoose.connect(process.env.MONGO_URI) // Connect to MongoDB using the URI from environment variables.
