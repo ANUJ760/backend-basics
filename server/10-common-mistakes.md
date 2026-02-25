@@ -30,6 +30,22 @@ Fix: stop startup or return `500` safely.
 Mistake: sending `200` for every outcome.
 Fix: use meaningful codes (`400`, `401`, `404`, `409`, `500`).
 
+## 7. Inconsistent Naming
+
+Mistake: mixing naming styles randomly (`addtodo`, `Add_todo`, `todoListData` in unrelated patterns).
+Fix: follow one naming convention consistently:
+- components/models: `PascalCase`
+- variables/functions: `camelCase`
+- env constants: `UPPER_SNAKE_CASE`
+- docs files: `kebab-case`
+
+This reduces mental load and import mistakes.
+
+## 8. Large Controller Functions
+
+Mistake: one controller doing validation, DB queries, formatting, and unrelated logic in one long block.
+Fix: split into small helper functions and keep each controller focused on one use case.
+
 ## Required Edge Cases and Expected Responses
 
 - Register with existing email -> `409 Conflict` with message like "Email already registered".

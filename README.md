@@ -170,6 +170,37 @@ If you get stuck, trace one request end-to-end:
 - Why: browser blocks cross-origin requests by default.
 - How: backend enables CORS so `localhost:3000` can call `localhost:5000`.
 
+## Coding Practices and Naming Conventions
+
+### Good Coding Practices for This Project
+
+1. Keep one responsibility per function.
+2. Validate user input before database operations.
+3. Return early for invalid cases to avoid deep nested `if` blocks.
+4. Use proper HTTP status codes (`200`, `201`, `400`, `401`, `404`, `409`, `500`).
+5. Keep controllers focused on logic and models focused on data access.
+6. Never hardcode secrets in source code.
+7. Write small comments for non-obvious logic, not obvious lines.
+8. Keep responses consistent: always return JSON with clear `message` fields for errors.
+
+### Naming Conventions (Backend + Frontend)
+
+- Variables/functions: `camelCase` (example: `createTodo`, `isPasswordCorrect`)
+- Classes/models/components: `PascalCase` (example: `User`, `Todo`, `AddTodo`)
+- Constants/env names: `UPPER_SNAKE_CASE` (example: `JWT_SECRET`, `MONGO_URI`)
+- Files:
+  - React component files: `PascalCase` preferred (`AddTodo.js`, `TodoList.js`, `TodoItem.js`)
+  - Non-component utility files: `camelCase` (`authMiddleware.js`, `todoController.js`)
+  - Docs/chapters: `kebab-case` (`what-is-http.md`)
+- API routes: lowercase plural nouns (`/api/todos`, `/api/users`)
+
+### Why Naming Conventions Matter
+
+- Faster code reading
+- Fewer import mistakes
+- Better team collaboration
+- Easier maintenance as project grows
+
 ## Prerequisites
 
 Install these first:

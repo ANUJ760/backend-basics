@@ -18,4 +18,21 @@ This backend is built with Node.js, Express, MongoDB, and Mongoose.
 - `res` is the outgoing response object.
 - `async/await` is used for asynchronous DB operations.
 
+## Server Coding Practices
+
+1. Keep routes thin and controllers focused.
+2. Keep database logic inside models where possible.
+3. Use `try/catch` in async controllers and forward errors to middleware.
+4. Validate `req.body`, `req.params`, and auth token before DB queries.
+5. Avoid duplicated logic; reuse middleware/helpers.
+6. Use clear status codes and consistent JSON response structure.
+
+## Server Naming Conventions
+
+- Controller function names: verb + resource (`registerUser`, `loginUser`, `createTodo`)
+- Middleware names: purpose-based (`authMiddleware`, `errorHandler`)
+- Model names: singular `PascalCase` (`User`, `Todo`)
+- Route files: resource-based `camelCase` (`authRoutes.js`, `todoRoutes.js`)
+- Env variables: `UPPER_SNAKE_CASE` (`PORT`, `JWT_SECRET`)
+
 Read chapter files in this folder and subfolders for detailed explanations.
