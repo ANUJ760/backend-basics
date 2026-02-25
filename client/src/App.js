@@ -18,7 +18,7 @@ function App() {
     <div className="app-shell">
       <div className="app-card">
         <h1 className="app-title">Todo App</h1>
-        <p className="app-subtitle">Sky Blue Theme with Glass UI</p>
+        <p className="app-subtitle">A CRUD operations tutorial!</p>
       <AddTodo onAdd={addTodo} />
       <TodoList todos={todos} />
       </div>
