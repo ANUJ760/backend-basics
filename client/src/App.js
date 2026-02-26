@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react"
 import TodoList from "./components/Todolist"
 import AddTodo from "./components/Addtodo"
+import Login from "./components/Login"
+import Register from "./components/Register"
 import "./App.css"
 import API from "./api"
 
 function App() {
   const [todos, setTodos] = useState([])
+  const [token, setToken] = useState(localStorage.getItem("token") || null) // Initialize the token state variable with the value from local storage if it exists, or null if it doesn't.
 
   const fetchTodos = async () => {
     try {
@@ -17,8 +20,8 @@ function App() {
   }
 
   useEffect(() => {
-    fetchTodos() // Call the fetchTodos function when the component mounts to load the initial list of todos.
-  }, []) // The empty dependency array ensures that the effect runs only once when the component mounts.
+    if (token) fetchTodos() // Call the fetchTodos function when the component mounts to load the initial list of todos.
+  }, [token]) // Add token as a dependency to the useEffect hook to refetch todos whenever the token changes (e.g., after login or logout).
 
  const addTodo = async (title) => {
   try {
@@ -27,13 +30,31 @@ function App() {
   }catch (err) {
     console.log(err)
   }
- }
+}
+
+  const logout = () => {
+    localStorage.removeItem("token")
+    setToken(null)
+  }
+
+  if(!token) {
+    return (
+      <div>
+        <Login setToken = {setToken}/>
+        <Register setToken = {setToken}/>
+      </div>
+    )
+  }
+
+
+
 
   return (
     <div className="app-shell">
       <div className="app-card">
         <h1 className="app-title">Todo App</h1>
         <p className="app-subtitle">A CRUD operations tutorial!</p>
+        <button onClick={logout} className="logout-button">Logout</button>
       <AddTodo onAdd={addTodo} />
       <TodoList todos={todos} />
       </div>
