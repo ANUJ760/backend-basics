@@ -112,6 +112,38 @@
   color: #2a678a;
 }
 
+.auth-panel h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #0d4566;
+}
+
+.auth-form {
+  display: grid;
+  gap: 10px;
+}
+
+.auth-error {
+  margin: 0;
+  color: #a12323;
+  font-size: 0.9rem;
+}
+
+.auth-switch {
+  margin: 14px 0 0;
+  color: #215f82;
+}
+
+.auth-link {
+  border: none;
+  background: transparent;
+  padding: 0;
+  color: #0d5f86;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 @media (max-width: 520px) {
   .app-card {
     padding: 22px 16px;

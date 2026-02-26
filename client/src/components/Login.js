@@ -1,40 +1,65 @@
-import {useState} from "react" 
-import API from "./api"
+import { useState } from "react"
+import API from "../api"
 
-function Login({setToken}) {
-    const [email, setEmail] = useState("") // State variable to hold the email input value.
-    const [password, setPassword]  =useState("")
+function Login({ setToken }) {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
-    const handleLogin = async() => {
-        try {
-            const res = await API.post("/auth/login", {
-                email,
-                password
-            }) // Make a POST request to the /auth/login endpoint of the backend API with the email and password as the request body to attempt user login.
-            localStorage.setItem("token", res.data.token) // If the login is successful, store the received token in local storage for future authenticated requests.
-            setToken(res.data.token) // If the login is successful, store the received token in local storage and update the parent component's state with the new token.
-        } catch (err) {
-            console.error("Login failed!")
-        }
+  const handleLogin = async e => {
+    e.preventDefault()
+    setErrorMessage("")
+
+    const trimmedEmail = email.trim()
+    if (!trimmedEmail || !password) {
+      setErrorMessage("Email and password are required.")
+      return
     }
+
+    setIsLoading(true)
+    try {
+      const res = await API.post("/auth/login", {
+        email: trimmedEmail,
+        password
+      })
+
+      localStorage.setItem("token", res.data.token)
+      setToken(res.data.token)
+    } catch (err) {
+      setErrorMessage(err.response?.data?.msg || "Login failed. Please try again.")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  return (
+    <div className="auth-panel">
+      <h2>Login</h2>
+      <form onSubmit={handleLogin} className="auth-form">
+        <input
+          className="todo-input"
+          placeholder="EMAIL"
+          type="email"
+          autoComplete="email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+        />
+        <input
+          className="todo-input"
+          placeholder="PASSWORD"
+          type="password"
+          autoComplete="current-password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+        {errorMessage ? <p className="auth-error">{errorMessage}</p> : null}
+        <button className="glass-btn" type="submit" disabled={isLoading}>
+          {isLoading ? "Logging in..." : "Login"}
+        </button>
+      </form>
+    </div>
+  )
 }
 
-return (
-    <div>
-        <h2>Login</h2>
-        <input
-            placeholder = "EMAIL"
-            value = {email}
-            onChange = {e => setEmail(e.target.value)} // Update the email state variable whenever the input value changes.
-        />
-        <input
-            placeholder = "PASSWORD"
-            value = {password}
-            onChange = {e => setPassword(e.target.value)} // Update the password state variable whenever the input value changes.
-        />
-        <button onClick = {handleLogin}>LOGIN</button>
-    </div>
-    
-)
-
-export default Login // default means that when this file is imported, the Login component will be the default export that is imported. This allows other parts of the application to import the Login component without needing to use curly braces or specify a named export.
+export default Login
