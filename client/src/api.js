@@ -4,6 +4,7 @@ const API = axios.create({
     baseURL: "http://localhost:5000/api" // Set the base URL for all API requests to the backend server.
 })
 
+// to send token with every request
 API.interceptors.request.use(req => {
     const token = localStorage.getItem("token") // Retrieve the authentication token from local storage.
     if(token) req.headers.Authorization = token // If a token exists, add it to the Authorization header of the request.
