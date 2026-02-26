@@ -18,6 +18,12 @@ This backend is built with Node.js, Express, MongoDB, and Mongoose.
 - `res` is the outgoing response object.
 - `async/await` is used for asynchronous DB operations.
 
+## Database Setup Clarification
+
+- This project does not ship with a pre-created MongoDB database.
+- Set `MONGO_URI` in `server/.env` to a real MongoDB connection string.
+- MongoDB creates the database automatically on the first successful write operation.
+
 ## Server Coding Practices
 
 1. Keep routes thin and controllers focused.

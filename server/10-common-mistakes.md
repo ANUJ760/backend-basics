@@ -48,8 +48,8 @@ Fix: split into small helper functions and keep each controller focused on one u
 
 ## Required Edge Cases and Expected Responses
 
-- Register with existing email -> `409 Conflict` with message like "Email already registered".
-- Login with wrong password -> `401 Unauthorized` with generic message.
+- Register with existing email -> `400 Bad Request` with message like "User already exists".
+- Login with wrong password -> `400 Bad Request` with message like "WRONG PASSWORD".
 - Token missing -> `401 Unauthorized`.
 - Token invalid/expired -> `401 Unauthorized`.
 - Todo ID does not exist -> `404 Not Found`.

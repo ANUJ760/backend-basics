@@ -225,6 +225,10 @@ MONGO_URI=mongodb://127.0.0.1:27017/todo_course
 JWT_SECRET=your_long_random_secret
 ```
 
+Important:
+- `MONGO_URI` must be a real connection string, not a placeholder like `your_mongodb_connection_string`.
+- The database (for example `todo_course`) is not pre-created in this repo. MongoDB creates it automatically after the first successful write (such as user registration or creating a todo).
+
 Start backend:
 
 ```bash
@@ -260,7 +264,7 @@ Expected: frontend opens on `http://localhost:3000`.
 
 1. Check server is running and MongoDB is connected.
 2. Check endpoint URL and HTTP method.
-3. Check request body and headers (`Authorization: Bearer <token>`).
+3. Check request body and headers (`Authorization: <token>`).
 4. Check backend logs and response status code.
 5. Check frontend state update after response.
 6. Re-test same request in Postman to isolate frontend vs backend issue.
@@ -288,8 +292,8 @@ This endpoint structure is a standard CRUD API example and matches common Expres
 
 ## Common Edge Cases and Expected Backend Response
 
-- Register with existing email -> `409 Conflict`
-- Login with wrong password -> `401 Unauthorized`
+- Register with existing email -> `400 Bad Request`
+- Login with wrong password -> `400 Bad Request`
 - Missing token -> `401 Unauthorized`
 - Invalid/expired token -> `401 Unauthorized`
 - Todo ID does not exist -> `404 Not Found`
